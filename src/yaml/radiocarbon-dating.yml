@@ -3,7 +3,7 @@ description: >-
   This file contains a YAML-formatted specification of the RadiocarbonDating extension of the Minimum Information about any (x) Sequence (MIxS) standard, generated using LinkML (https://linkml.io/linkml/). This file is released by the Genomic Standards Consortium (GSC; https://www.gensc.org/) for use by anyone handling data or information about biological sequences. This file is also used as an authoritative 'source of truth' to generate downstream GSC artifacts, available here: https://github.com/GenomicsStandardsConsortium/mixs/tree/main/project
 comments:
   - "slot titles that are associated with more than one slot name/SCN: host sex"
-source: https://github.com/GenomicsStandardsConsortium/mixs/raw/issue-610-temp-mixs-xlsx-home/mixs/excel/mixs_v6.xlsx
+source: https://github.com/MIxS-MInAS/extension-radiocarbon-dating/raw/main/proposals/0.1.0/extension-radiocarbon-dating-v0_1_0.csv
 id: https://w3id.org/mixs
 version: v6.2.0
 imports:
@@ -24,18 +24,91 @@ subsets:
   nucleic acid sequence source:
   investigation:
 enums:
-  ExampleEnum:
+  MsMethod:
     permissible_values:
-      Yes:
-      No:
+      IMRS:
+      AMS:
 slots:
   c14_date:
+    annotations:
+      Expected_value: measurement
+      Preferred_unit:
+        tag: Preferred_unit
+        value: years before present (y BP)
+    description: >-
+      The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP), or a fraction-corrected fraction modern (F14C).  This is typically the 'raw' date reported by the radiocarbon lab in Before Present (BP) notation.
+    title: Radiocarbon date
+    examples:
+      - value: 1453
+      - value: 12560
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{integer}"
+    slot_uri: MIXS:99999991
+    multivalued: false
+    required: true
+    recommended: true
   c14_date_sd:
+    annotations:
+      Expected_value: measurement
+      Preferred_unit:
+        tag: Preferred_unit
+        value: years before present (y BP)
+    description: >-
+      The standard deviation around the 'raw' C14 Date measurement. Must be in the same format (e.g., y BP, or F14C).
+    title: Radiocarbon date standard deviation
+    examples:
+      - value: 120
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{integer}"
+    slot_uri: MIXS:99999992
+    multivalued: false
+    required: true
+    recommended: true
   c14_date_lab_code:
+    annotations:
+    description: >-
+      Unique laboratory identification number which is a combination of a lab identifier prefix, and a number. The prefix should be derived from: https://radiocarbon.webhost.uits.arizona.edu/laboratories.
+    title: Laboratory code for the date determination
+    examples:
+      - value: OxA-1539
+      - value: KN-1369
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{text}-{integer}"
+    slot_uri: MIXS:99999993
+    multivalued: false
+    required: true
+    recommended: true
   sample_material:
+    <TODO FROM HERE>: <TODO>
   delta_13_c:
   delta_13_c_sd:
   delta_13_c_method:
+    annotations:
+      Expected_value: enumeration
+    description: >-
+      Which spectrophotometry method was used to measure the delta carbon-13 value, either with  Isotope Ratio Mass Spectrometer (IRMS) or Accelerated Mass Spectrometer (AMS).
+    title: Delta 13C measurement method
+    examples:
+      - value: ams
+      - value: imrs
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{text}"
+    slot_uri: MIXS:99999997
+    range: MsMethod
+    required: false
+    recommended: true
   carbon_perc:
   nitrogen_perc:
   carb_nitro_ratio:
