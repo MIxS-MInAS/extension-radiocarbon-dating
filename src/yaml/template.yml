@@ -1,0 +1,89 @@
+name: mixs
+description: >-
+  This file contains a YAML-formatted specification of the Minimum Information about any (x) Sequence (MIxS) standard, generated using LinkML (https://linkml.io/linkml/). This file is released by the Genomic Standards Consortium (GSC; https://www.gensc.org/) for use by anyone handling data or information about biological sequences. This file is also used as an authoritative 'source of truth' to generate downstream GSC artifacts, available here: https://github.com/GenomicsStandardsConsortium/mixs/tree/main/project
+comments:
+  - "slot titles that are associated with more than one slot name/SCN: host sex"
+source: https://github.com/GenomicsStandardsConsortium/mixs/raw/issue-610-temp-mixs-xlsx-home/mixs/excel/mixs_v6.xlsx
+id: https://w3id.org/mixs
+version: v6.2.0
+imports:
+  - linkml:types
+prefixes:
+  linkml: https://w3id.org/linkml/
+  MIXS: https://w3id.org/mixs/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  shex: http://www.w3.org/ns/shex#
+  schema: http://schema.org/
+default_prefix: MIXS
+default_range: string
+subsets:
+  example:
+  combination_classes:
+  sequencing:
+  environment:
+  nucleic acid sequence source:
+  investigation:
+enums:
+  ExampleEnum:
+    permissible_values:
+      Yes:
+      No:
+slots:
+  example:
+    description: Data that comply with Extension Example
+    title: Example
+    domain: MixsCompliantData
+    slot_uri: MIXS:ancient_data
+    multivalued: true
+    range: Example
+    inlined: true
+    inlined_as_list: true
+  example_term:
+    annotations:
+      Expected_value: Example term data type
+    description: Long form description of what the term for
+    title: Example term name
+    examples:
+      - value: example
+    in_subset:
+      - example
+    keywords:
+      - example
+    string_serialization: "{text}"
+    slot_uri: MIXS:999999999
+    multivalued: true
+    range: string
+    required: false
+    recommended: true
+classes:
+  Extension:
+    description:
+      A collection of recommended metadata terms (slots) developed by community
+      experts, describing the specific context under which a sample was collected.
+    aliases:
+      - EnvironmentalPackage
+  Example:
+    description: >-
+      A collection of term acting as a brief template or example for making new MIxS LinkML YAML files
+    comments:
+      - This should only be used as a template, not as a standard.
+    title: example
+    is_a: Extension
+    slots:
+      - example_term
+    slot_usage:
+      example_term:
+        recommended: true
+    class_uri: MIXS:9999999
+    annotations:
+      use_cases: example
+settings:
+  country: ([^\s-]{1,2}|[^\s-]+.+[^\s-]+)
+  parameters: ([^\s-]{1,2}|[^\s-]+.+[^\s-]+)
+  region: ([^\s-]{1,2}|[^\s-]+.+[^\s-]+)
+  room_name: ([^\s-]{1,2}|[^\s-]+.+[^\s-]+)
+  software: ([^\s-]{1,2}|[^\s-]+.+[^\s-]+)
+  specific_location: ([^\s-]{1,2}|[^\s-]+.+[^\s-]+)
+  storage_condition_type: ([^\s-]{1,2}|[^\s-]+.+[^\s-]+)
+  termLabel: ([^\s-]{1,2}|[^\s-]+.+[^\s-]+)
+  unit: ([^\s-]{1,2}|[^\s-]+.+[^\s-]+)

@@ -1,0 +1,23 @@
+Structured comment name,Item (rdfs:label),Definition,Expected value,Value syntax,Example,Preferred unit,Occurence
+c14_date,C14 Date,"The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP), or a fraction-corrected fraction modern (F14C).  This is typically the 'raw' date reported by the radiocarbon lab in Before Present (BP) notation.",integer,{integer} {unit},13310 BP,BP,1
+c14_date_sd,C14 Data Standard Deviation,"The standard deviation around the 'raw' C14 Date measurement. Must be in the same format (e.g., y BP, or F14C).",date,{integer},123,BP,1
+c14_lab_code,Laboratory code for the determination ,"Unique laboratory identification number which is a combination of a lab identifier prefix, and a number. The prefix should be derived from: https://radiocarbon.webhost.uits.arizona.edu/laboratories.",text,{string}-{integer},"OxA-1539, KN-1369",,m
+sample_material,Material of the sample,"Material reported for a single radiocarbon determination. In cases where multiple materials are reported for a single radiocarbon determination, use the category ""bulk sample"" and insert all the relevant information.",text,{string},"bone / tooth, soil, bulk sample",,m
+pretreatment_method,Pretreatment method,Pretreatment method used for decontamination applied to sample.,text,{string},Brown et al. 1988 with Vivaspin® filter cleaning method from Bronk Ramsey et al. (2004),,1
+delta_13_c,Delta carbon-13,Delta carbon-13 (δ13C) measurement used as a quality control measurement.,measurement value,{float},"1.1, -0.5",,1
+delta_13_c_sd,Delta Carbon-13 Standard Deviation,Standard deviation around the delta carbon-13 (δ13C) measurement.,measurement value,{float},0.1,,1
+deta_13_c_spec,Delta Carbon-13 spectrophotometry method,"Which spectrophotometry method was used to measure the delta carbon-13 value, either with  Isotope Ratio Mass Spectrometer (IRMS) or Accelerated Mass Spectrometer (AMS)",Enumeration,[imrs|ams],ams,,1
+percentage_c,%C,Quality control measurement for charcoal recorded as % carbon.,measurement value,{float} {percentage},30.00%,%,1
+percentage_n,%N,Quality control measurement for material recorded as % nitrogen.,measurement value,{float} {percentage},10.00%,%,1
+c_n_ratio,C/N ratio,Quality control measurement for proteinaceous samples recorded as Carbon to Nitrogen ratio.,float,{float},"12, 23.5",,1
+calibration_curve,Calibration curve,Name of calibration curve used during radiocarbon date calibration.,enumeration,{enumeration}; {text},"IntCal20, SHCal20, Bomb21NH3",,m
+reservoir_offset,Reservoir offset,"The reservoir offset used to modify the calibration curve, if any.",text,{string},??,??,m
+reservoir_offset_size,Reservoir offset size,The size of the reservoir offset used to modify the calibration curve.,float,{float},??,??,m
+reservoir_offset_uncert,Reservoir offset uncertainty,The uncertainty around the size of the reservoir offset used to modify the calibration curve.,float,{float},??,??,m
+calibration_software,C14 Calibration Software Name,The name of the software used to generated the calibrated version of the laboratory measurement date.,text,{string},OxCal,,m
+calibration_version,C14 Calibration Software Version,Version of the calibration software used for calibration.,text,{version},4.4,N/A,m
+calibration_settings,C14 Calibration Software Settings,"Settings used with the calibration software, including models (where used).",text,{string},-m 10,,m
+calibration_citation,Citation of C14 Calibration Software,The DOI of the publication where the calibration software was originally described.,"PMID,DOI,url or free text",{PMID}|{DOI}|{URL}|{text},10.1017/S0033822200033865,,m
+calibrated_age_upper,Upper age range,"Upper (oldest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations.",integer,{integer},5400 cal BP,cal BP,m
+calibrated_age_bottom,Lower age range,"Lower (youngest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations.",integer,{integer},1176 cal BP,cal BP,m
+calibrated_age_probability,Probability of calibrated age,Probability of the reported upper and lower calibrated age range. ,float,{float} {percentage},"68%, 95.4%",N/A,m
