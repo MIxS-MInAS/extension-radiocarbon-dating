@@ -28,6 +28,37 @@ enums:
     permissible_values:
       IMRS:
       AMS:
+  CalibCurve:
+    permissible_values:
+      IntCal98:
+      IntCal04:
+      IntCal09:
+      IntCal13:
+      IntCal20:
+      SHCal04:
+      SHCal13:
+      SHCal20:
+      Bomb04NH1:
+      Bomb04NH2:
+      Bomb04NH3:
+      Bomb04SH:
+      Bomb13NH1:
+      Bomb13NH2:
+      Bomb13NH3:
+      Bomb13SH12:
+      Bomb13SH3:
+      Bomb21NH1:
+      Bomb21NH2:
+      Bomb21NH3:
+      Bomb21SH12:
+      Bomb21SH3:
+      Kueppers04:
+      Marine98:
+      Marine04:
+      Marine09:
+      Marine13:
+      Marine20:
+      CalPal2007_HULU:
 slots:
   c14_date:
     annotations:
@@ -39,15 +70,15 @@ slots:
       The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP), or a fraction-corrected fraction modern (F14C).  This is typically the 'raw' date reported by the radiocarbon lab in Before Present (BP) notation.
     title: Radiocarbon date
     examples:
-      - value: 50 F14C
+      - value: 1.0300 F14C
       - value: 1453 yr BP
       - value: 12560 yr BP
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer}"
-    slot_uri: MIXS:99999991
+    string_serialization: "{integer} {unit}"
+    slot_uri: MIXS:99999971
     range: integer
     multivalued: false
     required: true
@@ -59,17 +90,17 @@ slots:
         tag: Preferred_unit
         value: years before present (yr BP)
     description: >-
-      The standard deviation around the 'raw' C14 Date measurement. Must be in the same format (e.g., y BP, or F14C).
+      The one standard deviation around the 'raw' C14 Date measurement . Must be in the same format (e.g., y BP, or F14C).
     title: Radiocarbon date standard deviation
     examples:
       - value: 120 yr BP
-      - value: 20 F14C
+      - value: 0.0047 F14C
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer}"
-    slot_uri: MIXS:99999992
+    string_serialization: "{integer} {unit}"
+    slot_uri: MIXS:99999972
     range: integer
     multivalued: false
     required: true
@@ -87,7 +118,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{text}-{integer}"
-    slot_uri: MIXS:99999993
+    slot_uri: MIXS:99999973
     range: string
     multivalued: false
     required: true
@@ -107,7 +138,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{termLabel} [{termID}]|{text}"
-    slot_uri: MIXS:99999994
+    slot_uri: MIXS:99999974
     range: string
     multivalued: false
     required: false
@@ -127,7 +158,7 @@ slots:
       - investigation
     keywords:
       - dating
-    slot_uri: MIXS:99999995
+    slot_uri: MIXS:99999975
     range: string
     pattern: ^^PMID:\d+$|^doi:10.\d{2,9}/.*$|^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$|([^\s-]{1,2}|[^\s-]+.+[^\s-]+)$
     structured_pattern:
@@ -152,7 +183,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{float}"
-    slot_uri: MIXS:99999996
+    slot_uri: MIXS:99999976
     multivalued: false
     required: true
     recommended: true
@@ -170,25 +201,257 @@ slots:
     keywords:
       - dating
     string_serialization: "{text}"
-    slot_uri: MIXS:99999997
+    slot_uri: MIXS:99999977
     range: MsMethod
     required: false
     recommended: true
   carbon_perc:
+    annotations:
+      Expected_value: measurement
+      Preferred_unit:
+        tag: Preferred_unit
+        value: percent (%)
+    description: >-
+      The percentage of carbon in a non-proteinaceous sample used for dating (such as charcoal), expressed as a percentage (%). Used as a quality control measurement.
+    title: Carbon percentage
+    examples:
+      - value: 50.3
+      - value: 45.1
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{float} {unit}"
+    slot_uri: MIXS:99999978
+    range: float
+    multivalued: false
+    required: true
+    recommended: true
   nitrogen_perc:
   carb_nitro_ratio:
+    annotations:
+      Expected_value: measurement value
+    description: Ratio of amount or concentrations of carbon to nitrogen. Used for quality control value in proteinaceous samples for radiocarbon dating.
+    title: carbon/nitrogen ratio
+    examples:
+      - value: "0.417361111"
+    keywords:
+      - carbon
+      - nitrogen
+      - ratio
+    string_serialization: "{float}:{float}"
     slot_uri: MIXS:0000310
-  reservoir_offset:
-  reservoir_offset_size:
-  reservoir_offset_uncert:
-  calib_curve:
-  calib_software:
-  calib_version:
-  calib_settings:
-  calib_citation:
+    range: float
+    multivalued: false
+    required: false
+    recommended: true
   calib_age_upper:
+    annotations:
+      Expected_value: measurement
+      Preferred_unit:
+        tag: Preferred_unit
+        value: calibrated years before present (cal BP)
+    description: >-
+      Upper (oldest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.
+    title: Radiocarbon calibration age upper limit
+    examples:
+      - value: 1250 cal BP
+      - value: 12560 cal BP
+      - value: 1453 AD
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{integer} {unit}"
+    slot_uri: MIXS:99999979
+    range: integer
+    multivalued: true
+    required: false
+    recommended: true
   calib_age_bottom:
+    annotations:
+      Expected_value: measurement
+      Preferred_unit:
+        tag: Preferred_unit
+        value: calibrated years before present (cal BP)
+    description: >-
+      Lower (youngest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.
+    title: Radiocarbon calibration age lower limit
+    examples:
+      - value: 1450 cal BP
+      - value: 18560 cal BP
+      - value: 1500 AD
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{integer} {unit}"
+    slot_uri: MIXS:99999980
+    range: integer
+    multivalued: true
+    required: false
+    recommended: true
   calib_age_prob:
+    annotations:
+      Expected_value: probability value in percentage
+    description: >-
+      Probability of the reported upper and lower calibrated age range, typically in 1 or 2 levels of significance. This is typically specified as 68.2% or 95%, however should be specified.
+    title: Radiocarbon calibration age probability
+    examples:
+      - value: 95%
+      - value: 68.2%
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{integer} {unit}"
+    slot_uri: MIXS:99999981
+    range: integer
+    multivalued: true
+    required: false
+    recommended: true
+  calib_curve:
+    annotations:
+      Expected_value: enumeration
+    description: >-
+      Name of calibration curve used during radiocarbon date calibration.
+    title: Radiocarbon calibration curve name
+    examples:
+      - value: IntCal20
+      - value: SHCal20
+      - value: Bomb21NH3
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{text}"
+    slot_uri: MIXS:99999982
+    range: CalibCurve
+    multivalued: true
+    required: false
+    recommended: true
+  calib_software:
+    annotations:
+      Expected_value: text
+    description: >-
+      The name of the software used to generated the calibrated version of the laboratory measurement date.
+    title: Radiocarbon calibration software
+    examples:
+      - value: OxCal
+      - value: CALIB
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{text}"
+    slot_uri: MIXS:99999983
+    range: string
+    multivalued: true
+    required: false
+    recommended: true
+  calib_version:
+    annotations:
+      Expected_value: version
+    description: >-
+      Version of the calibration software used for calibration.
+    title: Radiocarbon calibration software version
+    examples:
+      - value: 1.0.3
+      - value: 4.4
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{text}"
+    slot_uri: MIXS:99999984
+    multivalued: true
+    range: string
+    required: false
+    recommended: true
+  calib_settings:
+    annotations:
+      Expected_value: text
+    description: >-
+      Settings used with the calibration software, including models (where used).
+    title: Radiocarbon calibration software settings
+    examples:
+      - value: "Bayesian model"
+      - value: "-m 10"
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{text}"
+    slot_uri: MIXS:99999985
+    range: string
+    multivalued: true
+    required: false
+    recommended: true
+  calib_citation:
+    annotations:
+      Expected_value: text
+    description: >-
+      The DOI, URL or citation information of the publication where the calibration software was originally described.
+    title: Radiocarbon calibration software citation
+    examples:
+      - value: "doi:10.1017/S0033822200033865"
+      - value: "Ramsey 2009, Radiocarbon"
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    slot_uri: MIXS:99999986
+    range: string
+    pattern: ^^PMID:\d+$|^doi:10.\d{2,9}/.*$|^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$|([^\s-]{1,2}|[^\s-]+.+[^\s-]+)$
+    structured_pattern:
+      syntax: ^{PMID}|{DOI}|{URL}|{text}$
+    multivalued: true
+    required: false
+    recommended: true
+  reservoir_offset:
+    annotations:
+      Expected_value: measurement
+      Preferred_unit:
+        tag: Preferred_unit
+        value: years before present (yr BP)
+    description: >-
+      The offset in years used to modify the calibration curve to account for the marine reservoir effect, if any.
+    title: Reservoir offset
+    examples:
+      - value: 320 yr BP
+      - value: 0.3 F14C
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{integer} {unit}"
+    slot_uri: MIXS:99999987
+    range: integer
+    multivalued: true
+    required: false
+    recommended: false
+  reservoir_offset_sd:
+    annotations:
+      Expected_value: measurement
+      Preferred_unit:
+        tag: Preferred_unit
+        value: years before present (yr BP)
+    description: >-
+      The standard deviation offset in years used to modify the calibration curve to account for the marine reservoir effect, if any.
+    title: Reservoir offset standard deviation
+    examples:
+      - value: 20 yr BP
+      - value: 0.00054 F14C
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{integer} {unit}"
+    slot_uri: MIXS:99999988
+    range: integer
+    multivalued: true
+    required: false
+    recommended: false
 
 classes:
   Extension:
@@ -210,22 +473,19 @@ classes:
       - c14_date_lab_code
       - sample_material
       - delta_13_c
-      - delta_13_c_sd
       - delta_13_c_method
       - carbon_perc
-      - nitrogen_perc
       - carb_nitro_ratio
-      - reservoir_offset
-      - reservoir_offset_size
-      - reservoir_offset_uncert
+      - calib_age_upper
+      - calib_age_bottom
+      - calib_age_prob
       - calib_curve
       - calib_software
       - calib_version
       - calib_settings
       - calib_citation
-      - calib_age_upper
-      - calib_age_bottom
-      - calib_age_proba
+      - reservoir_offset
+      - reservoir_offset_sd
     slot_usage:
       example_term:
         recommended: true

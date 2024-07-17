@@ -1,0 +1,180 @@
+{
+    "$defs": {
+        "CalibCurve": {
+            "description": "",
+            "enum": [
+                "IntCal98",
+                "IntCal04",
+                "IntCal09",
+                "IntCal13",
+                "IntCal20",
+                "SHCal04",
+                "SHCal13",
+                "SHCal20",
+                "Bomb04NH1",
+                "Bomb04NH2",
+                "Bomb04NH3",
+                "Bomb04SH",
+                "Bomb13NH1",
+                "Bomb13NH2",
+                "Bomb13NH3",
+                "Bomb13SH12",
+                "Bomb13SH3",
+                "Bomb21NH1",
+                "Bomb21NH2",
+                "Bomb21NH3",
+                "Bomb21SH12",
+                "Bomb21SH3",
+                "Kueppers04",
+                "Marine98",
+                "Marine04",
+                "Marine09",
+                "Marine13",
+                "Marine20",
+                "CalPal2007_HULU"
+            ],
+            "title": "CalibCurve",
+            "type": "string"
+        },
+        "Example": {
+            "additionalProperties": false,
+            "description": "A collection of term acting as a brief template or example for making new MIxS LinkML YAML files",
+            "properties": {
+                "c14_date": {
+                    "description": "The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP), or a fraction-corrected fraction modern (F14C).  This is typically the 'raw' date reported by the radiocarbon lab in Before Present (BP) notation.",
+                    "type": "integer"
+                },
+                "c14_date_lab_code": {
+                    "description": "Unique laboratory identification number which is a combination of a lab identifier prefix, and a number. The prefix should be derived from: https://radiocarbon.webhost.uits.arizona.edu/laboratories.",
+                    "type": "string"
+                },
+                "c14_date_sd": {
+                    "description": "The one standard deviation around the 'raw' C14 Date measurement . Must be in the same format (e.g., y BP, or F14C).",
+                    "type": "integer"
+                },
+                "calib_age_bottom": {
+                    "description": "Lower (youngest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": "array"
+                },
+                "calib_age_prob": {
+                    "description": "Probability of the reported upper and lower calibrated age range, typically in 1 or 2 levels of significance. This is typically specified as 68.2% or 95%, however should be specified.",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": "array"
+                },
+                "calib_age_upper": {
+                    "description": "Upper (oldest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": "array"
+                },
+                "calib_citation": {
+                    "description": "The DOI, URL or citation information of the publication where the calibration software was originally described.",
+                    "items": {
+                        "pattern": "^^PMID:\\d+$|^doi:10.\\d{2,9}/.*$|^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$|([^\\s-]{1,2}|[^\\s-]+.+[^\\s-]+)$",
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "calib_curve": {
+                    "description": "Name of calibration curve used during radiocarbon date calibration.",
+                    "items": {
+                        "$ref": "#/$defs/CalibCurve"
+                    },
+                    "type": "array"
+                },
+                "calib_settings": {
+                    "description": "Settings used with the calibration software, including models (where used).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "calib_software": {
+                    "description": "The name of the software used to generated the calibrated version of the laboratory measurement date.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "calib_version": {
+                    "description": "Version of the calibration software used for calibration.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "carb_nitro_ratio": {
+                    "description": "Ratio of amount or concentrations of carbon to nitrogen. Used for quality control value in proteinaceous samples for radiocarbon dating.",
+                    "type": "number"
+                },
+                "carbon_perc": {
+                    "description": "The percentage of carbon in a non-proteinaceous sample used for dating (such as charcoal), expressed as a percentage (%). Used as a quality control measurement.",
+                    "type": "number"
+                },
+                "delta_13_c": {
+                    "description": "The delta carbon-13 value of the sample (\u03b413C), which is the ratio of the stable isotope 13C to 12C, expressed in per mil (\u2030) notation. Used as a quality control measurement.",
+                    "type": "string"
+                },
+                "delta_13_c_method": {
+                    "$ref": "#/$defs/MsMethod",
+                    "description": "Which spectrophotometry method was used to measure the delta carbon-13 value, either with  Isotope Ratio Mass Spectrometer (IRMS) or Accelerated Mass Spectrometer (AMS)."
+                },
+                "reservoir_offset": {
+                    "description": "The offset in years used to modify the calibration curve to account for the marine reservoir effect, if any.",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": "array"
+                },
+                "reservoir_offset_sd": {
+                    "description": "The standard deviation offset in years used to modify the calibration curve to account for the marine reservoir effect, if any.",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": "array"
+                },
+                "sample_material": {
+                    "description": "Material of the sample used to extract carbon used for radiocarbon dating measurements. Use ontology terms where possible, e.g. from UBERON for anatomical parts, or ENVO for other organic samples.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "c14_date",
+                "c14_date_sd",
+                "c14_date_lab_code",
+                "delta_13_c",
+                "carbon_perc"
+            ],
+            "title": "Example",
+            "type": "object"
+        },
+        "Extension": {
+            "additionalProperties": false,
+            "description": "A collection of recommended metadata terms (slots) developed by community experts, describing the specific context under which a sample was collected.",
+            "title": "Extension",
+            "type": "object"
+        },
+        "MsMethod": {
+            "description": "",
+            "enum": [
+                "IMRS",
+                "AMS"
+            ],
+            "title": "MsMethod",
+            "type": "string"
+        }
+    },
+    "$id": "https://w3id.org/mixs",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "metamodel_version": "1.7.0",
+    "title": "mixs",
+    "type": "object",
+    "version": "v6.2.0"
+}
