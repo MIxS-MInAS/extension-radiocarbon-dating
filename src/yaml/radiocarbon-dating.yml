@@ -34,19 +34,21 @@ slots:
       Expected_value: measurement
       Preferred_unit:
         tag: Preferred_unit
-        value: years before present (y BP)
+        value: years before present (yr BP)
     description: >-
       The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP), or a fraction-corrected fraction modern (F14C).  This is typically the 'raw' date reported by the radiocarbon lab in Before Present (BP) notation.
     title: Radiocarbon date
     examples:
-      - value: 1453
-      - value: 12560
+      - value: 50 F14C
+      - value: 1453 yr BP
+      - value: 12560 yr BP
     in_subset:
       - investigation
     keywords:
       - dating
     string_serialization: "{integer}"
     slot_uri: MIXS:99999991
+    range: integer
     multivalued: false
     required: true
     recommended: true
@@ -55,18 +57,20 @@ slots:
       Expected_value: measurement
       Preferred_unit:
         tag: Preferred_unit
-        value: years before present (y BP)
+        value: years before present (yr BP)
     description: >-
       The standard deviation around the 'raw' C14 Date measurement. Must be in the same format (e.g., y BP, or F14C).
     title: Radiocarbon date standard deviation
     examples:
-      - value: 120
+      - value: 120 yr BP
+      - value: 20 F14C
     in_subset:
       - investigation
     keywords:
       - dating
     string_serialization: "{integer}"
     slot_uri: MIXS:99999992
+    range: integer
     multivalued: false
     required: true
     recommended: true
@@ -84,13 +88,74 @@ slots:
       - dating
     string_serialization: "{text}-{integer}"
     slot_uri: MIXS:99999993
+    range: string
     multivalued: false
     required: true
     recommended: true
   sample_material:
-    <TODO FROM HERE>: <TODO>
+    annotations:
+      Expected_value: text
+    description: >-
+      Material of the sample used to extract carbon used for radiocarbon dating measurements. Use ontology terms where possible, e.g. from UBERON for anatomical parts, or ENVO for other organic samples.
+    title: Radiocarbon dating sample material
+    examples:
+      - value: "charcoal [ENVO_01000560]"
+      - value: "molar tooth [UBERON_0003655]"
+      - value: "wood fragment"
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{termLabel} [{termID}]|{text}"
+    slot_uri: MIXS:99999994
+    range: string
+    multivalued: false
+    required: false
+    recommended: true
+  pretreatment_method:
+    annotations:
+      Expected_value: text
+    description: >-
+      Pretreatment method used for decontamination applied to sample, ideally a DOI or URL to a publication describing the method otherwise a short text description with critical information.
+    title: Radiocarbon treatment method
+    examples:
+      - value: "doi:10.1017/S0033822200039473"
+      - value: "Brown et al. 1988 with Vivaspin® filter cleaning method from Bronk Ramsey et al. (2004)"
+      - value: "ultrafiltration"
+      - value: "vivaspin filtration"
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    slot_uri: MIXS:99999995
+    range: string
+    pattern: ^^PMID:\d+$|^doi:10.\d{2,9}/.*$|^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$|([^\s-]{1,2}|[^\s-]+.+[^\s-]+)$
+    structured_pattern:
+      syntax: ^{PMID}|{DOI}|{URL}|{text}$
+    multivalued: false
+    required: false
+    recommended: true
   delta_13_c:
-  delta_13_c_sd:
+    annotations:
+      Expected_value: measurement
+      Preferred_unit:
+        tag: Preferred_unit
+        value: per mil (‰)
+    description: >-
+      The delta carbon-13 value of the sample (δ13C), which is the ratio of the stable isotope 13C to 12C, expressed in per mil (‰) notation. Used as a quality control measurement.
+    title: Delta 13C value
+    examples:
+      - value: -25.3
+      - value: -20.1
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{float}"
+    slot_uri: MIXS:99999996
+    multivalued: false
+    required: true
+    recommended: true
   delta_13_c_method:
     annotations:
       Expected_value: enumeration
