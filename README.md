@@ -47,3 +47,9 @@ gen-json-schema src/yaml/radiocarbon-dating.yml > src/json/radiocarbon-dating.js
 2041 gen-summary test.yml
 2042 history
 -->
+
+<!--
+yq '.["slots"]' radiocarbon-dating.yml
+
+## TODO: loop within each slot to flatten the structure, then do the wierd plus thing
+-->
