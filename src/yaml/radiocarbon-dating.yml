@@ -460,12 +460,13 @@ classes:
       experts, describing the specific context under which a sample was collected.
     aliases:
       - EnvironmentalPackage
-  Example:
+  RadiocarbonDating:
     description: >-
-      A collection of term acting as a brief template or example for making new MIxS LinkML YAML files
+      A collection of terms describing radiocarbon dating measurements and calibration, including the sample material, pretreatment method, and calibration curve used.
+      These date values and metadata are typically associated with a the sample sample material used for nucleic acis extraction
     comments:
-      - This should only be used as a template, not as a standard.
-    title: ra
+      - Typically will be used with ancient DNA samples
+    title: Radiocarbon dating
     is_a: Extension
     slots:
       - c14_date
@@ -487,8 +488,12 @@ classes:
       - reservoir_offset
       - reservoir_offset_sd
     slot_usage:
-      example_term:
-        recommended: true
+      c14_date:
+        required: true
+      c14_date_sd:
+        required: true
+      c14_date_lab_code:
+        required: true
     class_uri: MIXS:9999999
     annotations:
       use_cases: RadiocarbonDating
