@@ -107,6 +107,7 @@ slots:
     recommended: true
   c14_date_lab_code:
     annotations:
+      Expected_value: unique identifier
     description: >-
       Unique laboratory identification number which is a combination of a lab identifier prefix, and a number. The prefix should be derived from: https://radiocarbon.webhost.uits.arizona.edu/laboratories.
     title: Laboratory code for the date determination
@@ -452,7 +453,6 @@ slots:
     multivalued: true
     required: false
     recommended: false
-
 classes:
   Extension:
     description:
@@ -488,12 +488,7 @@ classes:
       - reservoir_offset
       - reservoir_offset_sd
     slot_usage:
-      c14_date:
-        required: true
-      c14_date_sd:
-        required: true
-      c14_date_lab_code:
-        required: true
+      # Normally specify the slot usage of required/recommended etc, but seems to break linkml2class_tsvs
     class_uri: MIXS:9999999
     annotations:
       use_cases: RadiocarbonDating
