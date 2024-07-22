@@ -70,9 +70,9 @@ slots:
       The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP), or a fraction-corrected fraction modern (F14C).  This is typically the 'raw' date reported by the radiocarbon lab in Before Present (BP) notation.
     title: Radiocarbon date
     examples:
-      - value: 1.0300 F14C
-      - value: 1453 yr BP
-      - value: 12560 yr BP
+      - value: "1.0300 F14C"
+      - value: "1453 yr BP"
+      - value: "12560 yr BP"
     in_subset:
       - investigation
     keywords:

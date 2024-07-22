@@ -18,6 +18,8 @@ The repo is laid out as follows:
 
 Use the YAML (in as far as possible similar format as MIxS LinkML structure) as the source of truth.
 
+### JSON Conversion
+
 To generate the JSON version, install LinkML
 
 ```bash
@@ -30,26 +32,16 @@ And run the following command, assuming root of repo:
 gen-json-schema src/yaml/radiocarbon-dating.yml > src/json/radiocarbon-dating.json
 ```
 
-<!--
+### MIxS TSV Style Conversion
 
-## Yaml mergeing
+To convert to the original MIxS TSV style, we can use [a script](https://github.com/GenomicsStandardsConsortium/mixs/blob/dd1a08f82637e80657f00b4551547a9b4b62c0d3/src/scripts/linkml2class_tsvs.py) developed by @TurboMam.
 
-2031 yq -s '.[0] \* .[1]' /home/james/git/mixs-minas/mixs/src/mixs/schema/mixs.yaml ancient.yml > test.yml
-2032 less test.yml
-2033 cat test.yml | grep ancient
-2034 cat test.yml | grep cultural_era
-2035 cat test.yml | grep -n cultural_era
-2036 cat test.yml | grep -n ancient
-2037 less test.yml
-2038 less -n test.yml
-2039 less --help
-2040 less -n test.yml
-2041 gen-summary test.yml
-2042 history
--->
+This script has been copied and modified very slightly to include the `python3` shebang, and is placed under `scripts` until properly packaged for the MIxS project.
 
-<!--
-yq '.["slots"]' radiocarbon-dating.yml
+To use this script, you only need `python3` and no other dependencies (it seems).
 
-## TODO: loop within each slot to flatten the structure, then do the wierd plus thing
--->
+In the root of this directory run:
+
+```bash
+./scripts/linkml2class_tsvs.py --schema-file src/yaml/radiocarbon-dating.yml --output-dir src/tsv/
+```
