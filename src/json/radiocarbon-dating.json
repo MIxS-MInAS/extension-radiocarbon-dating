@@ -60,12 +60,24 @@
             "title": "MsMethod",
             "type": "string"
         },
+        "RadiocarbonCalibUnit": {
+            "description": "",
+            "enum": [
+                "cal BP",
+                "cal AD",
+                "cal BC",
+                "cal CE",
+                "cal BCE"
+            ],
+            "title": "RadiocarbonCalibUnit",
+            "type": "string"
+        },
         "RadiocarbonDating": {
             "additionalProperties": false,
             "description": "A collection of terms describing radiocarbon dating measurements and calibration, including the sample material, pretreatment method, and calibration curve used. These date values and metadata are typically associated with a the sample sample material used for nucleic acis extraction",
             "properties": {
                 "c14_date": {
-                    "description": "The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP), or a fraction-corrected fraction modern (F14C).  This is typically the 'raw' date reported by the radiocarbon lab in Before Present (BP) notation.",
+                    "description": "The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP) NOT in AD/BC format.  This is typically the 'raw' date reported by the radiocarbon lab, in Before Present (BP) notation.",
                     "type": "integer"
                 },
                 "c14_date_lab_code": {
@@ -73,7 +85,7 @@
                     "type": "string"
                 },
                 "c14_date_sd": {
-                    "description": "The one standard deviation around the 'raw' C14 Date measurement . Must be in the same format (e.g., y BP, or F14C).",
+                    "description": "The one standard deviation around the 'raw' C14 Date measurement, normally indicated as a \u00b1 after the main date. Must be in the same format (i.e., y BP).",
                     "type": "integer"
                 },
                 "calib_age_oldest": {
@@ -87,6 +99,13 @@
                     "description": "Confidence level of the reported calibrated age range, typically in 2 (95.4%) or 1 (68.2%) levels of significance (sigma).",
                     "items": {
                         "$ref": "#/$defs/ConfidenceSigma"
+                    },
+                    "type": "array"
+                },
+                "calib_age_unit": {
+                    "description": "Unit of the calibrated median date and calibrated range, i.e., whether in  cal AD/BC, cal CE/BCE, cal BP. Note the abbreviation BP is to be used for uncalibrated 14C determinations only, therefore cal BP must be used here.",
+                    "items": {
+                        "$ref": "#/$defs/RadiocarbonCalibUnit"
                     },
                     "type": "array"
                 },

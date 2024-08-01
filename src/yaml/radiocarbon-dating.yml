@@ -63,13 +63,13 @@ enums:
     permissible_values:
       1:
       2:
-  RadiocarbonCalibrationUnit:
+  RadiocarbonCalibUnit:
     permissible_values:
-      cal BP:
-      cal AD:
-      cal BC:
-      cal CE:
-      cal BCE:
+      "cal BP":
+      "cal AD":
+      "cal BC":
+      "cal CE":
+      "cal BCE":
 slots:
   c14_date:
     annotations:
@@ -326,10 +326,7 @@ slots:
     recommended: true
   calib_age_unit:
     annotations:
-    Expected_value: unit
-    Preferred_unit:
-      tag: Preferred_unit
-      value: calibrated years before present (cal BP)
+      Expected_value: enumeration
     description: >-
       Unit of the calibrated median date and calibrated range, i.e., whether in  cal AD/BC, cal CE/BCE, cal BP. Note the abbreviation BP is to be used for uncalibrated 14C determinations only, therefore cal BP must be used here.
     title: Unit of radiocarbon date calibration
@@ -343,8 +340,7 @@ slots:
       - dating
     string_serialization: "{text}"
     slot_uri: MIXS:99999981
-    enumeration: RadiocarbonCalibrationUnit
-    range: integer
+    range: RadiocarbonCalibUnit
     multivalued: true
     required: false
     recommended: true
