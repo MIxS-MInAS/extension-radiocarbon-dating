@@ -63,6 +63,13 @@ enums:
     permissible_values:
       1:
       2:
+  RadiocarbonCalibrationUnit:
+    permissible_values:
+      cal BP:
+      cal AD:
+      cal BC:
+      cal CE:
+      cal BCE:
 slots:
   c14_date:
     annotations:
@@ -71,17 +78,16 @@ slots:
         tag: Preferred_unit
         value: years before present (yr BP)
     description: >-
-      The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP), or a fraction-corrected fraction modern (F14C).  This is typically the 'raw' date reported by the radiocarbon lab in Before Present (BP) notation.
+      The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP) NOT in AD/BC format.  This is typically the 'raw' date reported by the radiocarbon lab, in Before Present (BP) notation.
     title: Radiocarbon date
     examples:
-      - value: "1.0300 F14C"
-      - value: "1453 yr BP"
-      - value: "12560 yr BP"
+      - value: "1453"
+      - value: "12560"
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer} {unit}"
+    string_serialization: "{integer}"
     slot_uri: MIXS:99999971
     range: integer
     multivalued: false
@@ -94,16 +100,15 @@ slots:
         tag: Preferred_unit
         value: years before present (yr BP)
     description: >-
-      The one standard deviation around the 'raw' C14 Date measurement . Must be in the same format (e.g., y BP, or F14C).
+      The one standard deviation around the 'raw' C14 Date measurement, normally indicated as a ± after the main date. Must be in the same format (i.e., y BP).
     title: Radiocarbon date standard deviation
     examples:
-      - value: 120 yr BP
-      - value: 0.0047 F14C
+      - value: 120
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer} {unit}"
+    string_serialization: "{integer}"
     slot_uri: MIXS:99999972
     range: integer
     multivalued: false
@@ -260,14 +265,14 @@ slots:
       Upper (youngest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.
     title: Radiocarbon calibration age upper limit
     examples:
-      - value: 1449 cal BP
-      - value: 12560 cal BP
-      - value: 1500 AD
+      - value: 1449
+      - value: 12560
+      - value: 1500
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer} {unit}"
+    string_serialization: "{integer}"
     slot_uri: MIXS:99999979
     range: integer
     multivalued: true
@@ -283,14 +288,14 @@ slots:
       Median date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.
     title: Radiocarbon calibration age upper limit
     examples:
-      - value: 1450 cal BP
-      - value: 15700 cal BP
-      - value: 1473 AD
+      - value: 1450
+      - value: 15700
+      - value: 1473
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer} {unit}"
+    string_serialization: "{integer}"
     slot_uri: MIXS:99999979
     range: integer
     multivalued: true
@@ -306,15 +311,39 @@ slots:
       Lower (oldest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.
     title: Radiocarbon calibration age lower limit
     examples:
-      - value: 1451 cal BP
-      - value: 18560 cal BP
-      - value: 1453 AD
+      - value: 1451
+      - value: 18560
+      - value: 1453
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer} {unit}"
+    string_serialization: "{integer}"
     slot_uri: MIXS:99999980
+    range: integer
+    multivalued: true
+    required: false
+    recommended: true
+  calib_age_unit:
+    annotations:
+    Expected_value: unit
+    Preferred_unit:
+      tag: Preferred_unit
+      value: calibrated years before present (cal BP)
+    description: >-
+      Unit of the calibrated median date and calibrated range, i.e., whether in  cal AD/BC, cal CE/BCE, cal BP. Note the abbreviation BP is to be used for uncalibrated 14C determinations only, therefore cal BP must be used here.
+    title: Unit of radiocarbon date calibration
+    examples:
+      - value: cal BP
+      - value: cal AD
+      - value: cal BCE
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{text}"
+    slot_uri: MIXS:99999981
+    enumeration: RadiocarbonCalibrationUnit
     range: integer
     multivalued: true
     required: false
@@ -333,7 +362,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{integer}"
-    slot_uri: MIXS:99999981
+    slot_uri: MIXS:99999982
     range: ConfidenceSigma
     multivalued: true
     required: false
@@ -353,7 +382,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{text}"
-    slot_uri: MIXS:99999982
+    slot_uri: MIXS:99999983
     range: CalibCurve
     multivalued: true
     required: false
@@ -372,7 +401,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{text}"
-    slot_uri: MIXS:99999983
+    slot_uri: MIXS:99999984
     range: string
     multivalued: true
     required: false
@@ -391,7 +420,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{text}"
-    slot_uri: MIXS:99999984
+    slot_uri: MIXS:99999985
     multivalued: true
     range: string
     required: false
@@ -410,7 +439,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{text}"
-    slot_uri: MIXS:99999985
+    slot_uri: MIXS:99999986
     range: string
     multivalued: true
     required: false
@@ -428,7 +457,7 @@ slots:
       - investigation
     keywords:
       - dating
-    slot_uri: MIXS:99999986
+    slot_uri: MIXS:99999987
     range: string
     pattern: ^^PMID:\d+$|^doi:10.\d{2,9}/.*$|^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b(?:[-a-zA-Z0-9()@:%_\+.~#?&\/=]*)$|([^\s-]{1,2}|[^\s-]+.+[^\s-]+)$
     structured_pattern:
@@ -452,7 +481,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{integer}"
-    slot_uri: MIXS:99999987
+    slot_uri: MIXS:99999988
     range: integer
     multivalued: true
     required: false
@@ -473,7 +502,7 @@ slots:
     keywords:
       - dating
     string_serialization: "{integer}"
-    slot_uri: MIXS:99999988
+    slot_uri: MIXS:99999989
     range: integer
     multivalued: true
     required: false
@@ -505,6 +534,7 @@ classes:
       - calib_age_youngest
       - calib_age_oldest
       - calib_age_sigma
+      - calib_age_unit
       - calib_curve
       - calib_software
       - calib_version
