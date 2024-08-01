@@ -36,9 +36,33 @@
             "title": "CalibCurve",
             "type": "string"
         },
-        "Example": {
+        "ConfidenceSigma": {
+            "description": "",
+            "enum": [
+                "1",
+                "2"
+            ],
+            "title": "ConfidenceSigma",
+            "type": "string"
+        },
+        "Extension": {
             "additionalProperties": false,
-            "description": "A collection of term acting as a brief template or example for making new MIxS LinkML YAML files",
+            "description": "A collection of recommended metadata terms (slots) developed by community experts, describing the specific context under which a sample was collected.",
+            "title": "Extension",
+            "type": "object"
+        },
+        "MsMethod": {
+            "description": "",
+            "enum": [
+                "IMRS",
+                "AMS"
+            ],
+            "title": "MsMethod",
+            "type": "string"
+        },
+        "RadiocarbonDating": {
+            "additionalProperties": false,
+            "description": "A collection of terms describing radiocarbon dating measurements and calibration, including the sample material, pretreatment method, and calibration curve used. These date values and metadata are typically associated with a the sample sample material used for nucleic acis extraction",
             "properties": {
                 "c14_date": {
                     "description": "The uncalibrated date from the laboratory measurement. Should be a conventional 14C date (i.e., 14C yr BP), or a fraction-corrected fraction modern (F14C).  This is typically the 'raw' date reported by the radiocarbon lab in Before Present (BP) notation.",
@@ -52,22 +76,22 @@
                     "description": "The one standard deviation around the 'raw' C14 Date measurement . Must be in the same format (e.g., y BP, or F14C).",
                     "type": "integer"
                 },
-                "calib_age_bottom": {
-                    "description": "Lower (youngest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.",
+                "calib_age_oldest": {
+                    "description": "Lower (oldest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.",
                     "items": {
                         "type": "integer"
                     },
                     "type": "array"
                 },
-                "calib_age_prob": {
-                    "description": "Probability of the reported upper and lower calibrated age range, typically in 1 or 2 levels of significance. This is typically specified as 68.2% or 95%, however should be specified.",
+                "calib_age_sigma": {
+                    "description": "Confidence level of the reported calibrated age range, typically in 2 (95.4%) or 1 (68.2%) levels of significance (sigma).",
                     "items": {
-                        "type": "integer"
+                        "$ref": "#/$defs/ConfidenceSigma"
                     },
                     "type": "array"
                 },
-                "calib_age_upper": {
-                    "description": "Upper (oldest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.",
+                "calib_age_youngest": {
+                    "description": "Upper (youngest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.",
                     "items": {
                         "type": "integer"
                     },
@@ -82,14 +106,14 @@
                     "type": "array"
                 },
                 "calib_curve": {
-                    "description": "Name of calibration curve used during radiocarbon date calibration.",
+                    "description": "Name of calibration curve used during radiocarbon date calibration. If a Marine curve is selected, the localised reservoir offset should be specified.",
                     "items": {
                         "$ref": "#/$defs/CalibCurve"
                     },
                     "type": "array"
                 },
                 "calib_settings": {
-                    "description": "Settings used with the calibration software, including models (where used).",
+                    "description": "Settings used with the calibration software, including citations to age models used (when applicable).",
                     "items": {
                         "type": "string"
                     },
@@ -125,15 +149,15 @@
                     "$ref": "#/$defs/MsMethod",
                     "description": "Which spectrophotometry method was used to measure the delta carbon-13 value, either with  Isotope Ratio Mass Spectrometer (IRMS) or Accelerated Mass Spectrometer (AMS)."
                 },
-                "reservoir_offset": {
-                    "description": "The offset in years used to modify the calibration curve to account for the marine reservoir effect, if any.",
+                "localised_reservoir_offset_sd": {
+                    "description": "The standard deviation of averaged Delta R (\u2206R) values used modify the calibration curve to account for regional/localised marine reservoir effect.",
                     "items": {
                         "type": "integer"
                     },
                     "type": "array"
                 },
-                "reservoir_offset_sd": {
-                    "description": "The standard deviation offset in years used to modify the calibration curve to account for the marine reservoir effect, if any.",
+                "localised_reservoir_offset_value": {
+                    "description": "The Delta R (\u2206R) value used modify the calibration curve to account for regional/localised marine reservoir effect.",
                     "items": {
                         "type": "integer"
                     },
@@ -151,23 +175,8 @@
                 "delta_13_c",
                 "carbon_perc"
             ],
-            "title": "Example",
+            "title": "RadiocarbonDating",
             "type": "object"
-        },
-        "Extension": {
-            "additionalProperties": false,
-            "description": "A collection of recommended metadata terms (slots) developed by community experts, describing the specific context under which a sample was collected.",
-            "title": "Extension",
-            "type": "object"
-        },
-        "MsMethod": {
-            "description": "",
-            "enum": [
-                "IMRS",
-                "AMS"
-            ],
-            "title": "MsMethod",
-            "type": "string"
         }
     },
     "$id": "https://w3id.org/mixs",

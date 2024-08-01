@@ -59,6 +59,10 @@ enums:
       Marine13:
       Marine20:
       CalPal2007_HULU:
+  ConfidenceSigma:
+    permissible_values:
+      1:
+      2:
 slots:
   c14_date:
     annotations:
@@ -246,19 +250,19 @@ slots:
     multivalued: false
     required: false
     recommended: true
-  calib_age_upper:
+  calib_age_youngest:
     annotations:
       Expected_value: measurement
       Preferred_unit:
         tag: Preferred_unit
         value: calibrated years before present (cal BP)
     description: >-
-      Upper (oldest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.
+      Upper (youngest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.
     title: Radiocarbon calibration age upper limit
     examples:
-      - value: 1250 cal BP
+      - value: 1449 cal BP
       - value: 12560 cal BP
-      - value: 1453 AD
+      - value: 1500 AD
     in_subset:
       - investigation
     keywords:
@@ -269,19 +273,42 @@ slots:
     multivalued: true
     required: false
     recommended: true
-  calib_age_bottom:
+  calib_age_median:
     annotations:
       Expected_value: measurement
       Preferred_unit:
         tag: Preferred_unit
         value: calibrated years before present (cal BP)
     description: >-
-      Lower (youngest) range of calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.
-    title: Radiocarbon calibration age lower limit
+      Median date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.
+    title: Radiocarbon calibration age upper limit
     examples:
       - value: 1450 cal BP
+      - value: 15700 cal BP
+      - value: 1473 AD
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{integer} {unit}"
+    slot_uri: MIXS:99999979
+    range: integer
+    multivalued: true
+    required: false
+    recommended: true
+  calib_age_oldest:
+    annotations:
+      Expected_value: measurement
+      Preferred_unit:
+        tag: Preferred_unit
+        value: calibrated years before present (cal BP)
+    description: >-
+      Lower (oldest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.
+    title: Radiocarbon calibration age lower limit
+    examples:
+      - value: 1451 cal BP
       - value: 18560 cal BP
-      - value: 1500 AD
+      - value: 1453 AD
     in_subset:
       - investigation
     keywords:
@@ -292,22 +319,22 @@ slots:
     multivalued: true
     required: false
     recommended: true
-  calib_age_prob:
+  calib_age_sigma:
     annotations:
-      Expected_value: probability value in percentage
+      Expected_value: enumeration
     description: >-
-      Probability of the reported upper and lower calibrated age range, typically in 1 or 2 levels of significance. This is typically specified as 68.2% or 95%, however should be specified.
-    title: Radiocarbon calibration age probability
+      Confidence level of the reported calibrated age range, typically in 2 (95.4%) or 1 (68.2%) levels of significance (sigma).
+    title: Radiocarbon calibration age confidence level
     examples:
-      - value: 95%
-      - value: 68.2%
+      - value: 1
+      - value: 2
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer} {unit}"
+    string_serialization: "{integer}"
     slot_uri: MIXS:99999981
-    range: integer
+    range: ConfidenceSigma
     multivalued: true
     required: false
     recommended: true
@@ -315,7 +342,7 @@ slots:
     annotations:
       Expected_value: enumeration
     description: >-
-      Name of calibration curve used during radiocarbon date calibration.
+      Name of calibration curve used during radiocarbon date calibration. If a Marine curve is selected, the localised reservoir offset should be specified.
     title: Radiocarbon calibration curve name
     examples:
       - value: IntCal20
@@ -373,7 +400,7 @@ slots:
     annotations:
       Expected_value: text
     description: >-
-      Settings used with the calibration software, including models (where used).
+      Settings used with the calibration software, including citations to age models used (when applicable).
     title: Radiocarbon calibration software settings
     examples:
       - value: "Bayesian model"
@@ -409,45 +436,43 @@ slots:
     multivalued: true
     required: false
     recommended: true
-  reservoir_offset:
+  localised_reservoir_offset_value:
     annotations:
       Expected_value: measurement
       Preferred_unit:
         tag: Preferred_unit
         value: years before present (yr BP)
     description: >-
-      The offset in years used to modify the calibration curve to account for the marine reservoir effect, if any.
+      The Delta R (∆R) value used modify the calibration curve to account for regional/localised marine reservoir effect.
     title: Reservoir offset
     examples:
-      - value: 320 yr BP
-      - value: 0.3 F14C
+      - value: 49 yr BP
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer} {unit}"
+    string_serialization: "{integer}"
     slot_uri: MIXS:99999987
     range: integer
     multivalued: true
     required: false
     recommended: false
-  reservoir_offset_sd:
+  localised_reservoir_offset_sd:
     annotations:
       Expected_value: measurement
       Preferred_unit:
         tag: Preferred_unit
         value: years before present (yr BP)
     description: >-
-      The standard deviation offset in years used to modify the calibration curve to account for the marine reservoir effect, if any.
+      The standard deviation of averaged Delta R (∆R) values used modify the calibration curve to account for regional/localised marine reservoir effect.
     title: Reservoir offset standard deviation
     examples:
-      - value: 20 yr BP
-      - value: 0.00054 F14C
+      - value: 3 yr BP
     in_subset:
       - investigation
     keywords:
       - dating
-    string_serialization: "{integer} {unit}"
+    string_serialization: "{integer}"
     slot_uri: MIXS:99999988
     range: integer
     multivalued: true
@@ -477,16 +502,16 @@ classes:
       - delta_13_c_method
       - carbon_perc
       - carb_nitro_ratio
-      - calib_age_upper
-      - calib_age_bottom
-      - calib_age_prob
+      - calib_age_youngest
+      - calib_age_oldest
+      - calib_age_sigma
       - calib_curve
       - calib_software
       - calib_version
       - calib_settings
       - calib_citation
-      - reservoir_offset
-      - reservoir_offset_sd
+      - localised_reservoir_offset_value
+      - localised_reservoir_offset_sd
     slot_usage:
       # Normally specify the slot usage of required/recommended etc, but seems to break linkml2class_tsvs
     class_uri: MIXS:9999999
