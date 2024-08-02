@@ -1,6 +1,6 @@
-# extension-radiocarbon-dating
+# extension-ancient
 
-A MIxS extension proposal for 'radiocarbon dating' information about samples.
+A MIxS extension proposal for 'radiocarbon dating' information.
 
 ## Repository Structure
 
@@ -10,9 +10,12 @@ The repo is laid out as follows:
   - `<date>-<eventid>`: contains collated tables from community feedback sessions
 - `proposals/`
   - `<upcoming version>`: contains consensus term update proposals for inclusion in the next version of the standard
+- `project/`:
+  - `class-model-tsvs/`: contains MIxS <= v5 style TSVs for the extension for more-human readable inspection
+- `scripts/`: contains various helper scripts for processing JSON, YAML, and feedback data where necessary
 - `src/`
-  - `yaml/`: contains the structured YAML files of the latest release of the extension
-  - `json/`: contains the structured JSON files of the latest release the extension
+  - `mixs/`: contains the structured YAML and JSON files of the latest release of the extension
+- `template/`: contains a basic template for any YAML extension within MInAS
 
 ## Technical notes
 
@@ -29,7 +32,7 @@ pip install linkml
 And run the following command, assuming root of repo:
 
 ```bash
-gen-json-schema src/yaml/radiocarbon-dating.yml > src/json/radiocarbon-dating.json
+gen-json-schema src/mixs/schema/radiocarbon-dating > src/mixs/schema/radiocarbon-dating.json
 ```
 
 ### MIxS TSV Style Conversion
@@ -43,5 +46,7 @@ To use this script, you only need `python3` and no other dependencies (it seems)
 In the root of this directory run:
 
 ```bash
-./scripts/linkml2class_tsvs.py --schema-file src/yaml/radiocarbon-dating.yml --output-dir src/tsv/
+./scripts/linkml2class_tsvs.py --schema-file src/mixs/schema/radiocarbon-dating.yml --output-dir project/class-model-tsvs/
+
+
 ```
