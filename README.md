@@ -32,7 +32,7 @@ pip install linkml
 And run the following command, assuming root of repo:
 
 ```bash
-gen-json-schema src/mixs/schema/radiocarbon-dating > src/mixs/schema/radiocarbon-dating.json
+gen-json-schema src/mixs/schema/radiocarbon-dating.yml > src/mixs/schema/radiocarbon-dating.json
 ```
 
 ### MIxS TSV Style Conversion
