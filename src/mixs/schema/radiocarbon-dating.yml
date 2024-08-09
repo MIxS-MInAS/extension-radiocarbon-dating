@@ -528,6 +528,7 @@ classes:
       - carbon_perc
       - carb_nitro_ratio
       - calib_age_youngest
+      - calib_age_median
       - calib_age_oldest
       - calib_age_sigma
       - calib_age_unit

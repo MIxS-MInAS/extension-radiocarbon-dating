@@ -88,6 +88,13 @@
                     "description": "The one standard deviation around the 'raw' C14 Date measurement, normally indicated as a \u00b1 after the main date. Must be in the same format (i.e., y BP).",
                     "type": "integer"
                 },
+                "calib_age_median": {
+                    "description": "Median date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.",
+                    "items": {
+                        "type": "integer"
+                    },
+                    "type": "array"
+                },
                 "calib_age_oldest": {
                     "description": "Lower (oldest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.",
                     "items": {
