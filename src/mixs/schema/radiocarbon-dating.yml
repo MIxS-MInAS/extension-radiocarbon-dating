@@ -114,12 +114,12 @@ slots:
     multivalued: false
     required: true
     recommended: true
-  c14_date_lab_code:
+  c14_age_lab_ID:
     annotations:
       Expected_value: unique identifier
     description: >-
-      Unique laboratory identification number which is a combination of a lab identifier prefix, and a number. The prefix should be derived from: https://radiocarbon.webhost.uits.arizona.edu/laboratories.
-    title: Laboratory code for the date determination
+      Unique laboratory identification number for the age measurement which is a combination of a lab identifier prefix, and a number, joined by a hyphen (see examples). The prefix should be derived from: https://radiocarbon.webhost.uits.arizona.edu/laboratories.
+    title: Laboratory code for the age determination
     examples:
       - value: OxA-1539
       - value: KN-1369
@@ -521,7 +521,7 @@ classes:
     slots:
       - c14_age
       - c14_age_error
-      - c14_date_lab_code
+      - c14_age_lab_ID
       - sample_material
       - delta_13_c
       - delta_13_c_method
