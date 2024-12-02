@@ -78,7 +78,7 @@ slots:
         tag: Preferred_unit
         value: years before present (yr BP)
     description: >-
-      The uncalibrated age from the laboratory measurement. Should be a conventional 14C age (i.e., 14C yr BP) NOT in AD/BC format.  This is typically the 'raw' age reported by the radiocarbon lab, in Before Present (BP) notation.
+      The uncalibrated age from the laboratory measurement - i.e. the conventional radiocarbon age (CRA). Should be a conventional 14C age (i.e., 14C yr BP) NOT in AD/BC format. This is typically the 'raw' age reported by the radiocarbon lab, in Before Present (BP) notation.
     title: Radiocarbon age
     examples:
       - value: "1453"
@@ -100,7 +100,7 @@ slots:
         tag: Preferred_unit
         value: years before present (yr BP)
     description: >-
-      The 1-sigma uncertainty around the 'raw' C14 age measurement, normally indicated as a ± after the main age. Must be in the same format (i.e., y BP).
+      The 1-sigma uncertainty around the conventional radiocarbon age (C14) measurement, normally indicated as a ± after the main age. Must be in the same format (i.e., y BP). Sometimes referred to as the "error" or "sigma" of the measurement.
     title: Radiocarbon age uncertainty
     examples:
       - value: 120
