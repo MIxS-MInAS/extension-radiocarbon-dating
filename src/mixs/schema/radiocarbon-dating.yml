@@ -164,6 +164,8 @@ slots:
       - value: "Brown et al. 1988 with Vivaspin® filter cleaning method from Bronk Ramsey et al. (2004)"
       - value: "ultrafiltration"
       - value: "vivaspin filtration"
+      - value: "none"
+      - value: "not provided"
     in_subset:
       - investigation
     keywords:
