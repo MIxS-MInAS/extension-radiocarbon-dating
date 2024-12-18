@@ -71,6 +71,17 @@ enums:
       "cal CE":
       "cal BCE":
 slots:
+  radiocarbondating_data:
+    name: radiocarbondating_data
+    description: Data that comply with Extension RadiocarbonDating
+    title: Radiocarbon dating data
+    from_schema: https://w3id.org/mixs
+    domain: MixsCompliantData
+    slot_uri: MIXS:radiocarbondating_data
+    range: RadiocarbonDating
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   c14_date:
     annotations:
       Expected_value: measurement
