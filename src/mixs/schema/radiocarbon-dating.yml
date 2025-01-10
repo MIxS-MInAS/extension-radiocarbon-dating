@@ -114,7 +114,7 @@ slots:
     multivalued: false
     required: true
     recommended: true
-  c14_age_lab_ID:
+  c14_age_lab_id:
     annotations:
       Expected_value: unique identifier
     description: >-
