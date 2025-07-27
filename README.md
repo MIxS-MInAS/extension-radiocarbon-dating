@@ -1,6 +1,6 @@
 # extension-radiocarbon-dating
 
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16135993.svg)](https://doi.org/10.5281/zenodo.16135993)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16135992.svg)](https://doi.org/10.5281/zenodo.16135992)
 
 A MIxS extension proposal for 'radiocarbon dating' information.
 
