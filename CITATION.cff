@@ -2,7 +2,7 @@ cff-version: 1.2.0
 title: "Minimum Information about any Ancient Sequence (MInAS): Radiocarbon Dating Extension metadata schema (draft)"
 version: 0.1.4
 license: "CC0-1.0"
-type: standard
+type: dataset
 abstract: "(Draft) MIxS compatible metadata schema terms for radiocarbon dating data"
 message: "If you use this software, please cite it as below."
 authors:
