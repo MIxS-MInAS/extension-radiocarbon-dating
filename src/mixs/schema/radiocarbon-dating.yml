@@ -164,7 +164,7 @@ slots:
     multivalued: false
     required: false
     recommended: true
-  sample_taxon:
+  c14_sample_taxid:
     annotations:
       Expected_value: text
     description: >-
