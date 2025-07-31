@@ -553,6 +553,8 @@ classes:
       - c14_date_sd
       - c14_date_lab_code
       - sample_material
+      - c14_sample_taxid
+      - pretreatment_method
       - delta_13_c
       - delta_13_c_method
       - carbon_perc
