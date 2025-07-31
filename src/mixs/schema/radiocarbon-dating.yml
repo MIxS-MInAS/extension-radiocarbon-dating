@@ -164,6 +164,25 @@ slots:
     multivalued: false
     required: false
     recommended: true
+  c14_sample_taxid:
+    annotations:
+      Expected_value: text
+    description: >-
+      NCBI taxon id of the organism from which the sample used to extract carbon used for radiocarbon measurement originated.
+    title: Radiocarbon dating sample taxon
+    examples:
+      - value: "Corylus avellana"
+      - value: "Hordeum"
+    in_subset:
+      - investigation
+    keywords:
+      - dating
+    string_serialization: "{termLabel} [{termID}]|{text}"
+    slot_uri: MIXS:99999990
+    range: string
+    multivalued: false
+    required: false
+    recommended: true
   pretreatment_method:
     annotations:
       Expected_value: text
@@ -536,6 +555,8 @@ classes:
       - c14_age_error
       - c14_lab_id
       - sample_material
+      - c14_sample_taxid
+      - pretreatment_method
       - delta_13_c
       - delta_13_c_method
       - carbon_perc
