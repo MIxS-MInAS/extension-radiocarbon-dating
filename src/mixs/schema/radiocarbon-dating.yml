@@ -452,15 +452,11 @@ classes:
       - carbon_perc
       - carb_nitro_ratio
       - calib_age_youngest
-      - calib_age_median
       - calib_age_oldest
-      - calib_age_sigma
-      - calib_age_unit
+      - calib_age_confidence
+      - calib_age_era
       - calib_curve
       - calib_software
-      - calib_version
-      - calib_settings
-      - calib_citation
       - localised_reservoir_offset_value
       - localised_reservoir_offset_sd
     slot_usage:
