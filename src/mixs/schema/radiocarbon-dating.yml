@@ -71,6 +71,17 @@ enums:
       "cal CE":
       "cal BCE":
 slots:
+  radiocarbondating_data:
+    name: radiocarbondating_data
+    description: Data that comply with Extension RadiocarbonDating
+    title: Radiocarbon dating data
+    from_schema: https://w3id.org/mixs
+    domain: MixsCompliantData
+    slot_uri: MIXS:radiocarbondating_data
+    range: RadiocarbonDating
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
   c14_age:
     annotations:
       Expected_value: measurement
@@ -103,7 +114,7 @@ slots:
       The 1-sigma uncertainty around the conventional radiocarbon age (C14) measurement, normally indicated as a ± after the main age. Must be in the same format (i.e., y BP). Sometimes referred to as the "error" or "sigma" of the measurement.
     title: Radiocarbon age uncertainty
     examples:
-      - value: 120
+      - value: "120"
     in_subset:
       - investigation
     keywords:
@@ -114,7 +125,7 @@ slots:
     multivalued: false
     required: true
     recommended: true
-  c14_age_lab_id:
+  c14_lab_id:
     annotations:
       Expected_value: unique identifier
     description: >-
@@ -188,8 +199,8 @@ slots:
       The delta carbon-13 value of the sample (δ13C), which is the ratio of the stable isotope 13C to 12C, expressed in per mil (‰) notation. Used as a quality control measurement.
     title: Delta 13C value
     examples:
-      - value: -25.3
-      - value: -20.1
+      - value: "-25.3"
+      - value: "-20.1"
     in_subset:
       - investigation
     keywords:
@@ -227,8 +238,8 @@ slots:
       The percentage of carbon in a non-proteinaceous sample used for dating (such as charcoal), expressed as a percentage (%). Used as a quality control measurement.
     title: Carbon percentage
     examples:
-      - value: 50.3
-      - value: 45.1
+      - value: "50.3"
+      - value: "45.1"
     in_subset:
       - investigation
     keywords:
@@ -267,9 +278,9 @@ slots:
       Upper (youngest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.
     title: Radiocarbon calibration age upper limit
     examples:
-      - value: 1449
-      - value: 12560
-      - value: 1500
+      - value: "1449"
+      - value: "12560"
+      - value: "1500"
     in_subset:
       - investigation
     keywords:
@@ -290,9 +301,9 @@ slots:
       Median date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.
     title: Radiocarbon calibration age upper limit
     examples:
-      - value: 1450
-      - value: 15700
-      - value: 1473
+      - value: "1450"
+      - value: "15700"
+      - value: "1473"
     in_subset:
       - investigation
     keywords:
@@ -313,9 +324,9 @@ slots:
       Lower (oldest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.
     title: Radiocarbon calibration age lower limit
     examples:
-      - value: 1451
-      - value: 18560
-      - value: 1453
+      - value: "1451"
+      - value: "18560"
+      - value: "1453"
     in_subset:
       - investigation
     keywords:
@@ -353,8 +364,8 @@ slots:
       Confidence level of the reported calibrated age range, typically in 2 (95.4%) or 1 (68.2%) levels of significance (sigma).
     title: Radiocarbon calibration age confidence level
     examples:
-      - value: 1
-      - value: 2
+      - value: "1"
+      - value: "2"
     in_subset:
       - investigation
     keywords:
@@ -411,8 +422,8 @@ slots:
       Version of the calibration software used for calibration.
     title: Radiocarbon calibration software version
     examples:
-      - value: 1.0.3
-      - value: 4.4
+      - value: "1.0.3"
+      - value: "4.4"
     in_subset:
       - investigation
     keywords:
@@ -523,7 +534,7 @@ classes:
     slots:
       - c14_age
       - c14_age_error
-      - c14_age_lab_ID
+      - c14_lab_id
       - sample_material
       - delta_13_c
       - delta_13_c_method

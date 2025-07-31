@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+title: "Minimum Information about any Ancient Sequence (MInAS): Radiocarbon Dating Extension metadata schema (draft)"
+version: 0.1.4
+license: "CC0-1.0"
+type: dataset
+abstract: "(Draft) MIxS compatible metadata schema terms for radiocarbon dating data"
+message: "If you use this software, please cite it as below."
+authors:
+  - given-names: James A.
+    family-names: Fellows Yates
+    orcid: "https://orcid.org/0000-0001-5585-6277"
+  - given-names: Meriam
+    family-names: Guellil
+    orcid: "https://orcid.org/0000-0002-7235-4604"
+  - given-names: Antonio
+    family-names: Fernandez Guerra
+    orcid: "https://orcid.org/0000-0002-8679-490X"
+  - given-names: Deon
+    family-names: de Jager
+    orcid: "https://orcid.org/0000-0003-4388-2624"
+  - given-names: Victor Yan Kin
+    family-names: Lee
+    orcid: "https://orcid.org/0009-0001-5598-9632"
+  - given-names: Ophélie
+    family-names: Lebrasseur
+    orcid: "https://orcid.org/0000-0003-0687-8538"
+  - given-names: Clemens
+    family-names: Schmid
+    orcid: "https://orcid.org/0000-0003-3448-5715"
+  - given-names: Joe
+    family-names: Roe
+    orcid: "https://orcid.org/0000-0002-1011-1244"
+  - name: MInAS community contributors
+    website: "https://mixs-minas.org/contributors"
+keywords:
+  - metadata
+  - standard
+  - schema
+  - ancient DNA
+  - palaeogenomics
+  - archaeogenomics
+  - MIxS
