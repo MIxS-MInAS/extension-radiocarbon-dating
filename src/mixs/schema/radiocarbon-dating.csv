@@ -1,0 +1,5 @@
+id,mappings,description
+Extension,,"A collection of recommended metadata terms (slots) developed by community experts, describing the specific context under which a sample was collected."
+MixsCompliantData,,A collection of data that complies with some combination of a MIxS checklist and environmental extension
+RadiocarbonDating,,"A collection of terms describing radiocarbon dating measurements and calibration, including the sample material, pretreatment method, and calibration curve used. These date values and metadata are typically associated with a the sample sample material used for nucleic acis extraction"
+

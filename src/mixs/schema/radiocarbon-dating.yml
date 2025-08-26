@@ -449,6 +449,14 @@ slots:
     required: false
     recommended: false
 classes:
+  MixsCompliantData:
+    description:
+      A collection of data that complies with some combination of a MIxS
+      checklist and environmental extension
+    title: MIxS compliant data
+    slots:
+      - radiocarbondating_data
+    tree_root: true
   Extension:
     description:
       A collection of recommended metadata terms (slots) developed by community

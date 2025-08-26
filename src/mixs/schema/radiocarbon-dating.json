@@ -36,19 +36,28 @@
             "title": "CalibCurve",
             "type": "string"
         },
-        "ConfidenceSigma": {
-            "description": "",
-            "enum": [
-                "1",
-                "2"
-            ],
-            "title": "ConfidenceSigma",
-            "type": "string"
-        },
         "Extension": {
             "additionalProperties": false,
             "description": "A collection of recommended metadata terms (slots) developed by community experts, describing the specific context under which a sample was collected.",
             "title": "Extension",
+            "type": "object"
+        },
+        "MixsCompliantData": {
+            "additionalProperties": false,
+            "description": "A collection of data that complies with some combination of a MIxS checklist and environmental extension",
+            "properties": {
+                "radiocarbondating_data": {
+                    "description": "Data that comply with Extension RadiocarbonDating",
+                    "items": {
+                        "$ref": "#/$defs/RadiocarbonDating"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "title": "MixsCompliantData",
             "type": "object"
         },
         "MsMethod": {
@@ -60,7 +69,7 @@
             "title": "MsMethod",
             "type": "string"
         },
-        "RadiocarbonCalibUnit": {
+        "RadiocarbonCalibEra": {
             "description": "",
             "enum": [
                 "cal BP",
@@ -69,7 +78,7 @@
                 "cal CE",
                 "cal BCE"
             ],
-            "title": "RadiocarbonCalibUnit",
+            "title": "RadiocarbonCalibEra",
             "type": "string"
         },
         "RadiocarbonDating": {
@@ -84,14 +93,31 @@
                     "description": "The 1-sigma uncertainty around the conventional radiocarbon age (C14) measurement, normally indicated as a \u00b1 after the main age. Must be in the same format (i.e., y BP). Sometimes referred to as the \"error\" or \"sigma\" of the measurement.",
                     "type": "integer"
                 },
-                "c14_age_lab_ID": {
+                "c14_lab_id": {
                     "description": "Unique laboratory identification number for the age measurement which is a combination of a lab identifier prefix, and a number, joined by a hyphen (see examples). The prefix should be derived from: https://radiocarbon.webhost.uits.arizona.edu/laboratories.",
                     "type": "string"
                 },
-                "calib_age_median": {
-                    "description": "Median date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.",
+                "c14_sample_taxid": {
+                    "description": "NCBI taxon id of the organism from which the sample used to extract carbon used for radiocarbon measurement originated.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "calib_age_confidence": {
+                    "description": "Confidence level of the reported calibrated age range, typically in 2 (95.4%) or 1 (68.2%) 'sigma' values.",
                     "items": {
-                        "type": "integer"
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "calib_age_era": {
+                    "description": "Calendar era used for the calibrated interval, i.e., whether in  cal AD/BC, cal CE/BCE, cal BP. Note the abbreviation BP is to be used for uncalibrated 14C determinations only, therefore cal BP must be used here.",
+                    "items": {
+                        "$ref": "#/$defs/RadiocarbonCalibEra"
                     },
                     "type": [
                         "array",
@@ -99,29 +125,9 @@
                     ]
                 },
                 "calib_age_oldest": {
-                    "description": "Lower (oldest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.",
+                    "description": "Upper bound (oldest plausible age) of the credible calibrated age interval of the sample at the specified confidence level. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.",
                     "items": {
                         "type": "integer"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "calib_age_sigma": {
-                    "description": "Confidence level of the reported calibrated age range, typically in 2 (95.4%) or 1 (68.2%) levels of significance (sigma).",
-                    "items": {
-                        "$ref": "#/$defs/ConfidenceSigma"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "calib_age_unit": {
-                    "description": "Unit of the calibrated median date and calibrated range, i.e., whether in  cal AD/BC, cal CE/BCE, cal BP. Note the abbreviation BP is to be used for uncalibrated 14C determinations only, therefore cal BP must be used here.",
-                    "items": {
-                        "$ref": "#/$defs/RadiocarbonCalibUnit"
                     },
                     "type": [
                         "array",
@@ -129,20 +135,9 @@
                     ]
                 },
                 "calib_age_youngest": {
-                    "description": "Upper (youngest) date in the range of a calibrated age. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.",
+                    "description": "Lower bound (youngest plausible age) of the credible calibrated age interval of the sample at the specified confidence level. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.",
                     "items": {
                         "type": "integer"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "calib_citation": {
-                    "description": "The DOI, URL or citation information of the publication where the calibration software was originally described.",
-                    "items": {
-                        "pattern": "^^PMID:\\d+$|^doi:10.\\d{2,9}/.*$|^https?:\\/\\/(?:www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b(?:[-a-zA-Z0-9()@:%_\\+.~#?&\\/=]*)$|([^\\s-]{1,2}|[^\\s-]+.+[^\\s-]+)$",
-                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -159,28 +154,8 @@
                         "null"
                     ]
                 },
-                "calib_settings": {
-                    "description": "Settings used with the calibration software, including citations to age models used (when applicable).",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "calib_software": {
-                    "description": "The name of the software used to generated the calibrated version of the laboratory measurement date.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "calib_version": {
-                    "description": "Version of the calibration software used for calibration.",
+                    "description": "Details of the software (name, version, settings, citation, etc.) used to calulated the calibrated radiocarbon date.",
                     "items": {
                         "type": "string"
                     },
@@ -228,6 +203,14 @@
                         "null"
                     ]
                 },
+                "pretreatment_method": {
+                    "description": "Pretreatment method used for decontamination applied to sample, ideally a DOI or URL to a publication describing the method otherwise a short text description with critical information.",
+                    "pattern": "^{PMID}|{DOI}|{URL}|{text}$",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "sample_material": {
                     "description": "Material of the sample used to extract carbon used for radiocarbon dating measurements. Use ontology terms where possible, e.g. from UBERON for anatomical parts, or ENVO for other organic samples.",
                     "type": [
@@ -239,7 +222,7 @@
             "required": [
                 "c14_age",
                 "c14_age_error",
-                "c14_age_lab_ID",
+                "c14_lab_id",
                 "delta_13_c",
                 "carbon_perc"
             ],
@@ -250,8 +233,22 @@
     "$id": "https://w3id.org/mixs",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
+    "description": "A collection of data that complies with some combination of a MIxS checklist and environmental extension",
     "metamodel_version": "1.7.0",
+    "properties": {
+        "radiocarbondating_data": {
+            "description": "Data that comply with Extension RadiocarbonDating",
+            "items": {
+                "$ref": "#/$defs/RadiocarbonDating"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        }
+    },
     "title": "mixs",
     "type": "object",
     "version": "v6.2.0"
 }
+
