@@ -291,7 +291,7 @@ slots:
         value: calibrated years before present (cal BP)
     description: >-
       Lower bound (youngest plausible age) of the credible calibrated age interval of the sample at the specified confidence level. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. The abbreviation BP is to be used for uncalibrated 14C determinations, cal BP must be used here.
-    title: Radiocarbon calibration age upper limit
+    title: Radiocarbon calibration age lower limit
     examples:
       - value: "1449"
       - value: "12560"
@@ -314,7 +314,7 @@ slots:
         value: calibrated years before present (cal BP)
     description: >-
       Upper bound (oldest plausible age) of the credible calibrated age interval of the sample at the specified confidence level. Calendar timescale to be specified: AD/BC, CE/BCE, cal BP. Note: the abbreviation 'BP' is to be used for uncalibrated 14C determinations, cal BP must be used here.
-    title: Radiocarbon calibration age lower limit
+    title: Radiocarbon calibration age upper limit
     examples:
       - value: "1451"
       - value: "18560"
