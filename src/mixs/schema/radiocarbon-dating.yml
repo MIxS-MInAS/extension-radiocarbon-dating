@@ -406,7 +406,7 @@ slots:
     multivalued: true
     required: false
     recommended: true
-  localised_reservoir_offset_value:
+  local_res_offset_val:
     annotations:
       Expected_value: measurement
       Preferred_unit:
@@ -427,7 +427,7 @@ slots:
     multivalued: true
     required: false
     recommended: false
-  localised_reservoir_offset_sd:
+  local_res_offset_sd:
     annotations:
       Expected_value: measurement
       Preferred_unit:
@@ -488,8 +488,8 @@ classes:
       - calib_age_era
       - calib_curve
       - calib_software
-      - localised_reservoir_offset_value
-      - localised_reservoir_offset_sd
+      - local_res_offset_val
+      - local_res_offset_sd
     slot_usage:
       # Normally specify the slot usage of required/recommended etc, but seems to break linkml2class_tsvs
     class_uri: MIXS:9999999
