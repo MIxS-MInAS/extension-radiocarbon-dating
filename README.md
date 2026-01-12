@@ -1,5 +1,12 @@
 # extension-radiocarbon-dating
 
+> [!WARNING]
+> Update: 2026-01-12
+> 
+> This project is being archived as a proposed MIxS project.
+> It it is being superseded by a separate (but complimentary) project called [MIaARD](https://github.com/MIxS-MInAS/miaard),
+> developed with the C14 community.  
+
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.16135992.svg)](https://doi.org/10.5281/zenodo.16135992)
 
 A MIxS extension proposal for 'radiocarbon dating' information.
